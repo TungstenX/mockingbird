@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/TungstenX/mockingbird?branch=master)](https://travis-ci.org/TungstenX/mockingbird)
+[![Build Status](https://travis-ci.org/TungstenX/mockingbird.svg?branch=master)](https://travis-ci.org/TungstenX/mockingbird)  [![Code Coverage](https://img.shields.io/codecov/c/github/TungstenX/mockingbird/master.svg)](https://codecov.io/github/TungstenX/mockingbird?branch=master)
 
 Find me on [stackoverflow](http://stackoverflow.com/users/537566/tungstenx)
 
