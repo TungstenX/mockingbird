@@ -38,6 +38,6 @@ public class ViewTest {
         file.delete();
         Assert.assertEquals(TestUtil.CORRECT_NUMBER_TWEET, list.size());
         String str = View.BuildOutput(map, list);
-        Assert.assertEquals(459, str.length());
+        Assert.assertEquals(464, str.length());
     }
 }
