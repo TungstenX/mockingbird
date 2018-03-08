@@ -14,6 +14,12 @@ public class User implements Comparable {
     private List<User> followedBy;
 
     /**
+     * Default constructor
+     */
+    public User() {
+    }
+
+    /**
      * Easy constructor
      *
      * @param name the user name
@@ -93,10 +99,13 @@ public class User implements Comparable {
      */
     @Override
     public int compareTo(Object obj) {
+        if(obj == null) {
+            throw new IllegalArgumentException("Supplied object is null");
+        }
         if (obj instanceof User) {
             return name.toLowerCase().compareTo(((User) obj).name.toLowerCase());
         }
-        return -1;
+        throw new IllegalArgumentException("Objects not the same: expected " + User.class.getName() + " got " + obj.getClass().getName());
     }
 
     /**

@@ -14,7 +14,10 @@ public class TestUtil {
             "Alan follows Martin\n" +
             "Ward follows Martin, Alan\n" +
             "ForeverAlone follows";
-
+    private static String WRONG_USER_LIST1 = "Ward follows Alan\n" +
+            " follows Martin, Alan\n" +
+            "ForeverAlone follows";
+    private static String WRONG_USER_LIST2 = "\n";
     private static String TWEETS = "Alan> If you have a procedure with 10 parameters, you probably missed some.\n" +
             "Ward> There are only two hard things in Computer Science: cache invalidation, naming things and off-by-1 errors.\n" +
             "Alan> Random numbers should not be generated with a method chosen at random.\n" +
@@ -31,6 +34,8 @@ public class TestUtil {
 
     public enum FileType {
         USER(USER_FILE, USER_LIST),
+        WRONG_USER1(USER_FILE, WRONG_USER_LIST1),
+        WRONG_USER2(USER_FILE, WRONG_USER_LIST2),
         TWEET(TWEET_FILE, TWEETS),
         WRONG_TWEET1(TWEET_FILE, TestUtil.WRONG_TWEET1),
         WRONG_TWEET2(TWEET_FILE, TestUtil.WRONG_TWEET2);

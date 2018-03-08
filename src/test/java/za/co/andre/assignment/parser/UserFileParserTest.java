@@ -55,4 +55,36 @@ public class UserFileParserTest {
         file.delete();
         Assert.assertEquals(TestUtil.CORRECT_NUMBER_USERS, map.size());
     }
+
+    /**
+     * Negative test: wrong user data
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void negReadWrongUserData1() {
+        File file = TestUtil.SetupFile(TestUtil.FileType.WRONG_USER1);
+        Map<String, User> map = null;
+        try {
+            map = UserFileParser.Read(file.getAbsolutePath());
+        } catch (IOException e) {
+            Assert.assertTrue(false);
+        }
+        file.delete();
+        Assert.assertEquals(TestUtil.CORRECT_NUMBER_USERS, map.size());
+    }
+
+    /**
+     * Negative test: wrong user data
+     */
+    @Test
+    public void negReadWrongUserData2() {
+        File file = TestUtil.SetupFile(TestUtil.FileType.WRONG_USER2);
+        Map<String, User> map = null;
+        try {
+            map = UserFileParser.Read(file.getAbsolutePath());
+        } catch (IOException e) {
+            Assert.assertTrue(false);
+        }
+        file.delete();
+        Assert.assertEquals(0, map.size());
+    }
 }
