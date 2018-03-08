@@ -1,5 +1,6 @@
 package za.co.andre.assignment.parser;
 
+import za.co.andre.assignment.MockingBird;
 import za.co.andre.assignment.model.Tweet;
 import za.co.andre.assignment.model.User;
 import za.co.andre.assignment.util.Util;
@@ -22,6 +23,9 @@ import java.util.stream.Stream;
 public class TweetFileParser {
 
     private static final Logger LOG = Logger.getLogger(TweetFileParser.class.getName());
+    static {
+        LOG.setParent(MockingBird.LOG);
+    }
 
     /**
      * Read the data from the file
@@ -29,7 +33,7 @@ public class TweetFileParser {
      * @param fileName The file name to read
      * @return A list of tweets
      */
-    public static List<Tweet> Read(Map<String, User> map, String fileName) {
+    public static List<Tweet> Read(Map<String, User> map, String fileName) throws IOException{
         if(map == null) {
             throw new IllegalArgumentException("A map is required");
         }
@@ -39,8 +43,6 @@ public class TweetFileParser {
         final List<Tweet> list = new LinkedList<>();
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(line -> ProcessLine(map, list, line));
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, "Error while reading file {0}: {1}", new Object[]{fileName, e.toString()});
         }
         return list;
     }

@@ -6,8 +6,13 @@ import za.co.andre.assignment.view.View;
 import za.co.andre.assignment.parser.TweetFileParser;
 import za.co.andre.assignment.parser.UserFileParser;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * This is the assignment. It will read in two files and produce the desired output
@@ -16,6 +21,17 @@ import java.util.Map;
  */
 public class MockingBird {
 
+    public static Logger LOG;
+    static {
+        InputStream stream = MockingBird.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+            LOG = Logger.getLogger(MockingBird.class.getName());
+        } catch (IOException e) {
+            System.err.println("Error while setting up logger: " + e.toString());
+        }
+    }
     /**
      * Entry point
      * @param args
@@ -25,9 +41,13 @@ public class MockingBird {
             PrintUsage();
             System.exit(-1);
         }
-        Map<String, User> map = UserFileParser.Read(args[0]);
-        List<Tweet> list = TweetFileParser.Read(map, args[1]);
-        PrintResult(View.BuildOutput(map, list));
+        try {
+            Map<String, User> map = UserFileParser.Read(args[0]);
+            List<Tweet> list = TweetFileParser.Read(map, args[1]);
+            PrintResult(View.BuildOutput(map, list));
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, "Error reading file(s): {0}", e.toString());
+        }
     }
 
     /**
