@@ -56,6 +56,6 @@ public class Tweet {
      */
     @Override
     public String toString() {
-        return "@" + author.getName() + ": " + data + "\n";
+        return "\t@" + author.getName() + ": " + data + "\n";
     }
 }
